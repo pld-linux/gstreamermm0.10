@@ -4,18 +4,18 @@
 #
 Summary:	A C++ bindings for the GStreamer library
 Summary(pl.UTF-8):	Wiązania C++ do biblioteki GStreamera
-Name:		gstreamermm
+Name:		gstreamermm0.10
 Version:	0.10.11
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/0.10/%{name}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/0.10/gstreamermm-%{version}.tar.xz
 # Source0-md5:	c2ca0b192a949a15edb863c1a59a1547
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	glibmm-devel >= 2.33.4
-BuildRequires:	gstreamer-devel >= 0.10.36
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.36
+BuildRequires:	gstreamer0.10-devel >= 0.10.36
+BuildRequires:	gstreamer0.10-plugins-base-devel >= 0.10.36
 # for not packaged examples only
 #BuildRequires:	gtkmm3-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5
@@ -25,9 +25,10 @@ BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	glibmm >= 2.33.4
-Requires:	gstreamer >= 0.10.36
-Requires:	gstreamer-plugins-base >= 0.10.36
+Requires:	gstreamer0.10 >= 0.10.36
+Requires:	gstreamer0.10-plugins-base >= 0.10.36
 Requires:	libxml++ >= 2.14
+Obsoletes:	gstreamermm < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,9 +47,10 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gstreamermm
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glibmm-devel >= 2.33.4
-Requires:	gstreamer-devel >= 0.10.36
-Requires:	gstreamer-plugins-base-devel >= 0.10.36
+Requires:	gstreamer0.10-devel >= 0.10.36
+Requires:	gstreamer0.10-plugins-base-devel >= 0.10.36
 Requires:	libxml++-devel >= 2.14
+Obsoletes:	gstreamermm-devel < 1.0
 
 %description devel
 Header files for gstreamermm library.
@@ -61,6 +63,7 @@ Summary:	gstreamermm static libraries
 Summary(pl.UTF-8):	Biblioteki statyczne gstreamermm
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Obsoletes:	gstreamermm-static < 1.0
 
 %description static
 gstreamermm static libraries.
@@ -73,6 +76,7 @@ Summary:	Reference documentation for gstreamermm
 Summary(pl.UTF-8):	Szczegółowa dokumentacja gstreamermm
 Group:		Documentation
 Requires:	devhelp
+Obsoletes:	gstreamermm-doc < 1.0
 
 %description doc
 Reference documentation for gstreamermm.
@@ -81,7 +85,7 @@ Reference documentation for gstreamermm.
 Szczegółowa dokumentacja gstreamermm.
 
 %prep
-%setup -q
+%setup -q -n gstreamermm-%{version}
 
 %build
 %{__libtoolize}
@@ -98,6 +102,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgstreamermm*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,8 +124,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgstreamermm-0.10.so
 %attr(755,root,root) %{_libdir}/libgstreamermm_get_plugin_defs-0.10.so
-%{_libdir}/libgstreamermm-0.10.la
-%{_libdir}/libgstreamermm_get_plugin_defs-0.10.la
 %{_libdir}/gstreamermm-0.10
 %{_includedir}/gstreamermm-0.10
 %{_pkgconfigdir}/gstreamermm-0.10.pc
