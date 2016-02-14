@@ -6,7 +6,7 @@ Summary:	A C++ bindings for the GStreamer library
 Summary(pl.UTF-8):	Wiązania C++ do biblioteki GStreamera
 Name:		gstreamermm0.10
 Version:	0.10.11
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/0.10/gstreamermm-%{version}.tar.xz
@@ -19,7 +19,7 @@ BuildRequires:	gstreamer0.10-plugins-base-devel >= 0.10.36
 # for not packaged examples only
 #BuildRequires:	gtkmm3-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5
-BuildRequires:	libxml++-devel >= 2.14
+BuildRequires:	libxml++2-devel >= 2.14
 BuildRequires:	mm-common >= 0.9.5
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
@@ -27,7 +27,7 @@ BuildRequires:	xz
 Requires:	glibmm >= 2.33.4
 Requires:	gstreamer0.10 >= 0.10.36
 Requires:	gstreamer0.10-plugins-base >= 0.10.36
-Requires:	libxml++ >= 2.14
+Requires:	libxml++2 >= 2.14
 Obsoletes:	gstreamermm < 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,7 +49,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glibmm-devel >= 2.33.4
 Requires:	gstreamer0.10-devel >= 0.10.36
 Requires:	gstreamer0.10-plugins-base-devel >= 0.10.36
-Requires:	libxml++-devel >= 2.14
+Requires:	libxml++2-devel >= 2.14
 Obsoletes:	gstreamermm-devel < 1.0
 
 %description devel
