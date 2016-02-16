@@ -6,7 +6,7 @@ Summary:	A C++ bindings for the GStreamer library
 Summary(pl.UTF-8):	Wiązania C++ do biblioteki GStreamera
 Name:		gstreamermm0.10
 Version:	0.10.11
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gstreamermm/0.10/gstreamermm-%{version}.tar.xz
@@ -18,6 +18,7 @@ BuildRequires:	gstreamer0.10-devel >= 0.10.36
 BuildRequires:	gstreamer0.10-plugins-base-devel >= 0.10.36
 # for not packaged examples only
 #BuildRequires:	gtkmm3-devel >= 3.0
+BuildRequires:	libstdc++-devel >= 6:4.3
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxml++2-devel >= 2.14
 BuildRequires:	mm-common >= 0.9.5
@@ -93,6 +94,8 @@ Szczegółowa dokumentacja gstreamermm.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# glibmm 2.46+/libxml++ 2.40+ require C++ 11
+CXXFLAGS="%{rpmcxxflags} -std=c++0x"
 %configure \
 	%{?with_static_libs:--enable-static}
 %{__make}
